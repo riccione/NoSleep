@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using WindowsInput;
@@ -30,7 +31,7 @@ namespace NoSleep
              *  Perform KeyPress method every interval
              */
             int interval = 59000;
-            Timer timer = new Timer();
+            System.Timers.Timer timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(KeyPress);
             timer.Interval = interval;
             timer.Enabled = true;
@@ -45,6 +46,19 @@ namespace NoSleep
              */
             InputSimulator sim = new InputSimulator();
             sim.Keyboard.KeyPress(VirtualKeyCode.F15);
+            RunningBackgroundThread();
+        }
+
+        private static void MessageToConsole()
+        {
+            Console.WriteLine(".");
+        }
+
+        private static void RunningBackgroundThread()
+        {
+            Thread backgroundThread = new Thread(MessageToConsole);
+            backgroundThread.IsBackground = true;
+            backgroundThread.Start();
         }
     }
 }
