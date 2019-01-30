@@ -12,6 +12,9 @@ namespace NoSleep
 {
     class Program
     {
+        private int counter = Properties.Settings.Default.Counter;
+        // time interval in milliseconds
+        public const int interval = 59000;
 
         static void Main(string[] args)
         {
@@ -30,7 +33,6 @@ namespace NoSleep
             /*
              *  Perform KeyPress method every interval
              */
-            int interval = 59000;
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(KeyPress);
             timer.Interval = interval;
@@ -46,18 +48,23 @@ namespace NoSleep
              */
             InputSimulator sim = new InputSimulator();
             sim.Keyboard.KeyPress(VirtualKeyCode.F15);
+            MessageHelper mh = new MessageHelper();
             RunningBackgroundThread();
         }
 
         private static void MessageToConsole()
         {
-            Console.WriteLine(".");
+            MessageHelper mh = new MessageHelper();
+            string msg = mh.GetMessage();
+            Console.WriteLine(msg);
         }
 
         private static void RunningBackgroundThread()
         {
-            Thread backgroundThread = new Thread(MessageToConsole);
-            backgroundThread.IsBackground = true;
+            Thread backgroundThread = new Thread(MessageToConsole)
+            {
+                IsBackground = true
+            };
             backgroundThread.Start();
         }
     }
