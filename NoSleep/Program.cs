@@ -15,11 +15,14 @@ namespace NoSleep
         private int counter = Properties.Settings.Default.Counter;
         // time interval in milliseconds
         public const int interval = 59000;
+        public const string prefix = "kami@kalypso:~$";
 
         static void Main(string[] args)
         {
             InitTimer();
-            Console.WriteLine("NoSleep started");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            string str = prefix + "NoSleep started";
+            Console.WriteLine(str);
 
             // Doesn't close the console with F15
             while (Console.ReadKey(true).Key == ConsoleKey.F15)
