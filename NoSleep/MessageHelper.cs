@@ -12,7 +12,7 @@ namespace NoSleep
 
         public string GetMessage()
         {
-            Performance p = new Performance;
+            Performance p = new Performance();
             string cpu = Convert.ToString(p.GetCpuUsage());
             string time = CountUsageTime();
             string output = Program.prefix
