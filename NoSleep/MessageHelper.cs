@@ -14,11 +14,14 @@ namespace NoSleep
         {
             Performance p = new Performance();
             string cpu = Convert.ToString(p.GetCpuUsage());
+            string memory = Convert.ToString(p.GetMemoryUsage());
             string time = CountUsageTime();
             string output = Program.prefix
                 + time
-                + " | " 
-                + cpu;
+                + " | CPU: "
+                + cpu
+                + " | Memory: "
+                + memory;
             return output;
         }
 
