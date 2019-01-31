@@ -21,8 +21,7 @@ namespace NoSleep
         public int GetMemoryUsage()
         {
             var memoryCounter = new PerformanceCounter("Memory", "Available MBytes");
-            int memoryUsage = (int)memoryCounter.NextValue();
-            return memoryUsage;
+            return (int)memoryCounter.NextValue();
         }
     }
 }

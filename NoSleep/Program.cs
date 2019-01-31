@@ -13,15 +13,15 @@ namespace NoSleep
     class Program
     {
         private int counter = Properties.Settings.Default.Counter;
-        // time interval in milliseconds
-        public const int interval = 59000;
-        public const string prefix = "kami@kalypso:~$";
+        // time Interval in milliseconds
+        public const int Interval = 59000;
+        public const string Prefix = "kami@kalypso:~$";
 
         static void Main(string[] args)
         {
             InitTimer();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            string str = prefix + "NoSleep started";
+            string str = Prefix + "NoSleep started";
             Console.WriteLine(str);
 
             // Doesn't close the console with F15
@@ -34,11 +34,11 @@ namespace NoSleep
         private static void InitTimer()
         {
             /*
-             *  Perform KeyPress method every interval
+             *  Perform KeyPress method every Interval
              */
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(KeyPress);
-            timer.Interval = interval;
+            timer.Interval = Interval;
             timer.Enabled = true;
             //timer.AutoReset = true;
         }
@@ -58,8 +58,7 @@ namespace NoSleep
         private static void MessageToConsole()
         {
             MessageHelper mh = new MessageHelper();
-            string msg = mh.GetMessage();
-            Console.WriteLine(msg);
+            mh.GetMessage();
         }
 
         private static void RunningBackgroundThread()

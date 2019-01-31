@@ -10,24 +10,17 @@ namespace NoSleep
     {
         private int counter = Properties.Settings.Default.Counter;
 
-        public string GetMessage()
+        public void GetMessage()
         {
             Performance p = new Performance();
             string cpu = Convert.ToString(p.GetCpuUsage());
-            string memory = Convert.ToString(p.GetMemoryUsage());
             string time = CountUsageTime();
-            string output = Program.prefix
-                + time
-                + " | CPU: "
-                + cpu
-                + " | Memory: "
-                + memory;
-            return output;
+            Console.Write("\r{0}", $"{ Program.Prefix } { time } | CPU: { p.GetCpuUsage() } | Memory: { p.GetMemoryUsage() }");
         }
 
         private string CountUsageTime()
         {
-            int milliSecs = IterateCounter() * Program.interval;
+            int milliSecs = IterateCounter() * Program.Interval;
             int hours = milliSecs / 3600000;
             int mins = (milliSecs % 3600000) / 60000;
             // Make sure you use the appropriate decimal separator
