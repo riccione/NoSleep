@@ -10,11 +10,17 @@ using WindowsInput.Native;
 
 namespace NoSleep
 {
+    enum TimeInterval
+    {
+        Test = 10000,
+        Production = 59000,
+    };
+
     class Program
     {
         private int counter = Properties.Settings.Default.Counter;
         // time Interval in milliseconds
-        public const int Interval = 59000;
+        public const int Interval = (int)TimeInterval.Production;
         public const string Prefix = "kami@kalypso:~$";
 
         static void Main(string[] args)
