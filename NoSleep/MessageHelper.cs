@@ -20,7 +20,7 @@ namespace NoSleep
 
         private string CountUsageTime()
         {
-            int milliSecs = IterateCounter() * Program.Interval;
+            int milliSecs = IterateCounter() * (Program.Interval + Performance.GetSleepTime());
             int hours = milliSecs / 3600000;
             int mins = (milliSecs % 3600000) / 60000;
             // Make sure you use the appropriate decimal separator

@@ -9,11 +9,15 @@ namespace NoSleep
 {
     class Performance
     {
+        private const int SleepTime = 1000;
+
         public int GetCpuUsage()
         {
+            // https://gavindraper.com/2011/03/01/retrieving-accurate-cpu-usage-in-c/
             var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            // The method nextValue() always returns a 0 value on the first call. So you have to call this method a second time.
+            // To count correct CPU usage: take two measures and put a pause between them
             cpuCounter.NextValue();
+            System.Threading.Thread.Sleep(SleepTime);
             int cpuUsage = (int)cpuCounter.NextValue();
             return cpuUsage;
         }
@@ -22,6 +26,11 @@ namespace NoSleep
         {
             var memoryCounter = new PerformanceCounter("Memory", "Available MBytes");
             return (int)memoryCounter.NextValue();
+        }
+
+        public static int GetSleepTime()
+        {
+            return SleepTime;
         }
     }
 }
